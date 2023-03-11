@@ -8,15 +8,17 @@ const getDistance = ([x1, y1], [x2, y2]) => {
 // BEGIN
 export const getTheNearestLocation = (loc, point) => {
     if (loc.length == 0) return null;
-    let res = getDistance(loc[0][1], point);
+    let res = Infinity;
+    let resCoord;
     let resLoc = '';
     for (let item of loc) {
         let [name, coord] = item;
         if (getDistance(coord, point) <= res) {
-            res = coord;
+            res = getDistance(coord, point);
+            resCoord = coord;
             resLoc = name;
         }
     }
-    return [resLoc, res]
+    return [resLoc, resCoord]
 }
 // END
